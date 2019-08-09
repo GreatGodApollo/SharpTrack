@@ -1,10 +1,45 @@
-﻿@page
+﻿@*    
+@     SharpTrack: ASP.NET Bug Tracker and Support Portal
+@     Copyright (C) 2019  Brett Bender & Max Arens
+@
+@     This program is free software: you can redistribute it and/or modify
+@     it under the terms of the GNU Affero General Public License as published
+@     by the Free Software Foundation, either version 3 of the License, or
+@     (at your option) any later version.
+@
+@     This program is distributed in the hope that it will be useful,
+@     but WITHOUT ANY WARRANTY; without even the implied warranty of
+@     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+@     GNU Affero General Public License for more details.
+@
+@     You should have received a copy of the GNU Affero General Public License
+@     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*@
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center container">
+    <h1 class="display-4">SharpTrack</h1>
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-3 mb-3">
+                Already have an account?
+                <a class="btn btn-outline-info" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </div>
+            <div class="col-md-3">
+                Looking to make an account?
+                <a class="btn btn-outline-info" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </div>
+        </div>
+    } else
+    {
+        <p>Go to your <a class="btn btn-outline-info" asp-area="User" asp-page="/Dashboard">Dashboard</a></p>
+    }
 </div>

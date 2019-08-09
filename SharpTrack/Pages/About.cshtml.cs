@@ -24,7 +24,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SharpTrack.Pages
 {
-    public class IndexModel : PageModel
+    public class AboutModel : PageModel
     {
         public void OnGet()
         {
